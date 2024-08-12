@@ -1,0 +1,173 @@
+// section 1 coding question
+function manipulateArray(arr){
+    return arr.map(num => num%2=== 0 ? num*2: num);
+}
+const inputArray = [1,2,3,4];
+const outputArray = manipulateArray(inputArray);
+console.log(outputArray);
+
+/* section 1 conceptual question 
+ Both of them are to compare the values
+ == can compare even different types of values 
+ but in === use only in case both values are same type to avoid coercion */
+
+// section 2 Coding question
+import React, { useState } from 'react';
+
+function Counter() {
+
+  const [count, setCount] = useState(0);
+
+  
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  
+  const decrement = () => {
+    setCount(count - 1);
+  };
+
+  return (
+    <div style={{ textAlign: 'center', marginTop: '25px' }}>
+      <h1>Simple Counter</h1>
+      <p>Current Count: {count}</p>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement} style={{ marginLeft: '15px' }}>Decrement</button>
+    </div>
+  );
+}
+
+export default Counter;
+
+/* section 2 Conceptual question
+use effect hook allows us to perform side effects in function components
+ It is useful for fetching the data, manually updating the DOM.*/
+ 
+
+// section 3 Coding question
+const express = require('express');
+
+const app = express();
+
+app.get('/message', (req, res) => {
+  // Return a JSON object with the message "Hello, World!"
+  res.json({ message: 'Hello, World!' });
+});
+
+const port = 3000;
+app.listen(port, () => {
+  console.log(Server started on port $ {port});
+});
+/*  section 3 Conceptual question
+node.js handles asynchronous operations by keeping in their order particularly non blocking I/O model. This method allows node.js 
+ to perform multiple tasks at a time without waiting for other tasks to complete making it highly efficient and scalable, especially for I/O-intensive tasks like handling multiple network requests.*/ 
+
+// section 4 Coding question
+// pages/index.js javascript file 
+import Head from 'next/head';
+
+const HomePage = ({ items }) => {
+  return (
+    <div>
+      <Head>
+        <title>Static Page</title>
+      </Head>
+      <h1>Items List</h1>
+      <ul>
+        {items.map((item, index) => (
+          <li key={index}>{item.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export async function getStaticProps() {
+  const jsonData = await import('../data/items.json');
+  return {
+    props: {
+      items: jsonData.default,
+    },
+  };
+}
+
+export default HomePage;
+
+// data/items.json created json file
+[
+    { "id": 1, "name": "Item 1" },
+    { "id": 2, "name": "Item 2" },
+    { "id": 3, "name": "Item 3" },
+    { "id": 4, "name": "Item 4" },
+    { "id": 5, "name": "Item 5" }
+  ]
+
+
+
+/* section 4 Conceptual question
+ 1.getStaticProps:
+
+Static Generation: Fetches data during the build time of application.
+Performance: Faster, as pages are pre-rendered and served statically.
+Use Case: Ideal for content that doesn’t change frequently as related to posts.
+
+2.getServerSideProps:
+
+ Server-Side Rendering (SSR): Fetches data on each request.
+Fresh Data: Ensures the latest data for every user.(latest version)
+ Use Case: Ideal for dynamic content or user-specific data especially to build updated front end pages.*/
+
+// section 5 Coding question
+CREATE TABLE users (
+    id INT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL
+  );
+  INSERT INTO users (id, name, email) VALUES (25, 'kurra', 'kurra@mail.com');
+  SELECT * FROM users;
+
+/* section 5 Conceptual question
+ Primary Key is a unique identity on the data and it is a column we can track data easily.
+ Unique key can never be null. It helps providing key information dueing database transactions particularly during inserting ,updating,deleting table.*/
+
+
+
+/*section 6 Conceptual question(1)
+// //1. Prepare App: Ensure your Node.js app has package.json and works locally.
+
+// 2. Create App Service: In the Azure Portal, create an App Service with Node.js as the runtime.
+
+// 3. Deploy:
+ - Azure CLI: 
+    Git bash
+    az webapp up --name <App-Name> --resource-group <Resource-Group>
+     
+   - Git: Set up Local Git in Azure, then push your code into repository.
+  - VS Code: Deploy using the Azure extension.
+
+ 4. Manage: Monitor and manage your app via the Azure Portal.
+
+ Your app will be live at the provided Azure URL.*/
+
+/*section 6 Conceptual question(2)
+A common benefit of using Azure App Services for hosting applications is 'automatic scaling and high availability'. 
+Azure App Services automatically adjusts resources to meet traffic demands, ensuring that your application remains responsive even during traffic spikes. 
+Additionally, it provides built-in high availability with multiple data centers, ensuring your application is resilient and has minimal downtime. //
+This combination allows you to focus on development without worrying about infrastructure management, optimizing both performance and cost. */
+
+
+// section 7 Coding question
+
+/ File: greeting-plugin.php
+
+
+function greeting_shortcode() {
+  return '<p>Welcome to My Site!</p>';
+}
+
+add_shortcode('greeting', 'greeting_shortcode');
+
+/*section 7 Conceptual Question
+ post: Posts are Dynamic and based on time these shown in reverse chronological order.
+pages: Pages are static like when we create we update our data or contact Information.*/
